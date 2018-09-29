@@ -1,0 +1,10 @@
+[package]
+name = "atomicmonitor"
+version = "0.1.0"
+authors = ["Phoenix <kahlo.phoenix@gmail.com>"]
+
+[dependencies]
+time = "0.1"
+atomic = "0.4.1"
+monitor = "0.1.0"
+
