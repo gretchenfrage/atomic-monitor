@@ -10,9 +10,9 @@ However, every mutation to the data involves the acquisition of a mutex, which
 can be unnecessarily slow, especially when mutations are simple operations which 
 could be performed atomically.
 
-The atomic monitor provides a monitor-like utility, which which lock acquisition 
+The atomic monitor provides a monitor-like utility, for which lock acquisition 
 is only performed when necessary. That is, only when one thread is actually blocking 
-on a condition, not if the data is only being atomically mutated, and not when
+on a condition -- not if the data is only being atomically mutated, and not when
 a thread blocks on a condition which is already satisfied.
 
 ### Example
@@ -42,7 +42,7 @@ a thread blocks on a condition which is already satisfied.
 
 ### Implementation
 
-The `AtomMonitor` contains three data, the atomic data in question, an atomic 
+The `AtomMonitor` contains three data, the atomic data being guarded, an atomic 
 *notification request counter*, and a regular monitor which guards `()`. 
 
 
@@ -52,5 +52,5 @@ number is positive, the monitor is acquired and notified.
 Upon awaiting a certain condition on the data, the data is atomically loaded,
 and only if the condition is not already satisfied, the request counter is 
 atomically incremented, the monitor is blocked on until the condition is fulfilled, 
-and, and then the request counter is atomically decremented on exit.
+and then the request counter is atomically decremented on exit.
 
