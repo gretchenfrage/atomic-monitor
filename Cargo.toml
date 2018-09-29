@@ -6,7 +6,7 @@ description = "Effeciently await a condition on atomic data."
 documentation = "https://raw.githubusercontent.com/gretchenfrage/atomic-monitor/master/README.md"
 repository = "https://github.com/gretchenfrage/atomic-monitor"
 categories = ["concurrency"]
-license = "mit"
+license = "MIT"
 
 [dependencies]
 time = "0.1"
