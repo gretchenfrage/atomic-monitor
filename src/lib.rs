@@ -67,7 +67,7 @@ impl<T: Copy> AtomMonitor<T> {
     }
 
     pub fn wait_until_timeout(&self, mut condition: impl FnMut(T) -> bool, timeout: Duration) -> Option<T> {
-        let end_time = precise_time_ns() + timeout.num_nanoseconds().unwrap() as u64;
+        let end_time = precise_time_ns() as i128 + timeout.num_nanoseconds().unwrap() as i128;
 
         let mut value = self.get();
         if !condition(value) {
@@ -85,7 +85,7 @@ impl<T: Copy> AtomMonitor<T> {
                             condition(value)
                         } {
                             break true;
-                        } else if precise_time_ns() > end_time {
+                        } else if precise_time_ns() as i128 > end_time {
                             break false;
                         } else {
                             if let Ok(remaining) = Duration::nanoseconds(end_time as i64 - precise_time_ns() as i64).to_std() {
