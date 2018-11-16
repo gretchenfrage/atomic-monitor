@@ -1,6 +1,6 @@
 [package]
 name = "atomicmonitor"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Phoenix <kahlo.phoenix@gmail.com>"]
 description = "Effeciently await a condition on atomic data."
 readme = "README.md"
